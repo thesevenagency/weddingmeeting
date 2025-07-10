@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="pageTitle">Стратегічна зустріч: Аналіз та план дій</title>
     
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M62.5 50a25 25 0 1 0-50 0 25 25 0 1 0 50 0z' fill='none' stroke='%23A1A1A6' stroke-width='10'/%3E%3Cpath d='M87.5 50a25 25 0 1 0-50 0 25 25 0 1 0 50 0z' fill='none' stroke='%23007AFF' stroke-width='10'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -116,9 +116,9 @@
             opacity: 1;
             transform: scale(1.1);
         }
-        
+
         main {
-            max-width: 1400px; /* <-- ИЗМЕНЕНИЕ ШИРИНЫ */
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -310,17 +310,15 @@
             header p { font-size: 1rem; }
             h2 { font-size: 2rem; }
             nav {
-                overflow-x: auto;
-                justify-content: flex-start;
+                justify-content: space-between;
+                padding: 0.75rem 1rem;
             }
-            .nav-links a {
-                padding: 0.5rem 0.75rem;
+            .nav-links {
+               display: none; /* Скрываем текстовые ссылки на мобильных */
             }
             .lang-switcher {
-                position: static;
+                position: static; /* Возвращаем в поток на мобильных */
                 transform: none;
-                margin-left: auto;
-                padding-left: 0.5rem;
             }
             main { padding: 0 1rem; }
         }
@@ -520,7 +518,7 @@
           en: {
             pageTitle: "Strategic Meeting: Analysis and Action Plan",
             mainTitle: "Strategic Meeting: 2025 Analysis and Action Plan",
-            mainSubtitle: "Wedding Department: H1 Summary, Anti-Crisis Plan, and Key Decisions",
+            mainSubtitle: "Wedding Department: First Half Summary, Anti-Crisis Plan, and Key Decisions",
             navAnalysis: "Analysis",
             navProblems: "Problems",
             navStrategy: "Strategy",
@@ -729,7 +727,7 @@
 
                 [{ id: 'salesChart', d24: 286306, d25: 174026 }, { id: 'leadsChart', d24: 375, d25: 304 }, { id: 'avgCheckChart', d24: 7800, d25: 5826 }].forEach(d => {
                     const canvas = document.getElementById(d.id);
-                    if (canvas) chartInstances[d.id] = new Chart(canvas.getContext('2d'), { type: 'bar', data: { labels: ['2024', '2025'], datasets: [{ data: [d.d24, d.d25], backgroundColor: ['#A1A1A6', '#D73845'], barThickness: 50, borderRadius: 4 }] }, options: barOptions });
+                    if (canvas) chartInstances[d.id].push(new Chart(canvas.getContext('2d'), { type: 'bar', data: { labels: ['2024', '2025'], datasets: [{ data: [d.d24, d.d25], backgroundColor: ['#A1A1A6', '#D73845'], barThickness: 50, borderRadius: 4 }] }, options: barOptions }));
                 });
                 
                 const monthlyCanvas = document.getElementById('monthlyLeadsChart');
