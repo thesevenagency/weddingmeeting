@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="pageTitle">Стратегічна зустріч: Аналіз та план дій</title>
     
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M62.5 50a25 25 0 1 0-50 0 25 25 0 1 0 50 0z' fill='none' stroke='%23A1A1A6' stroke-width='10'/%3E%3Cpath d='M87.5 50a25 25 0 1 0-50 0 25 25 0 1 0 50 0z' fill='none' stroke='%23007AFF' stroke-width='10'/%3E%3C/svg%3E">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
@@ -59,7 +61,6 @@
             margin: 0 auto;
         }
         
-        /* --- ИСПРАВЛЕННЫЙ БЛОК НАВИГАЦИИ --- */
         nav {
             position: sticky;
             top: 0;
@@ -68,16 +69,18 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
-            padding: 0.75rem 1rem;
+            padding: 0.75rem 2rem;
             z-index: 100;
-            text-align: center;
-        }
-        .nav-items {
-            display: inline-flex; /* Используем inline-flex для центрирования группы */
+            display: flex;
+            justify-content: center;
             align-items: center;
+            position: relative;
+        }
+        .nav-links {
+            display: flex;
             gap: 0.5rem;
         }
-        .nav-items a {
+        nav a {
             color: var(--secondary-text-color);
             text-decoration: none;
             padding: 0.5rem 1rem;
@@ -86,15 +89,16 @@
             transition: color 0.2s, background-color 0.2s;
             white-space: nowrap;
         }
-        .nav-items a:hover, .nav-items a.active {
+        nav a:hover, nav a.active {
             color: var(--bg-color);
             background-color: var(--accent-blue);
         }
 
         .lang-switcher {
-            margin-left: 1rem; /* Отступ от последней ссылки */
-            border-left: 1px solid var(--border-color);
-            padding-left: 1rem;
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
         }
         .lang-switcher button {
             font-size: 1.2rem;
@@ -112,10 +116,9 @@
             opacity: 1;
             transform: scale(1.1);
         }
-        /* --- КОНЕЦ ИСПРАВЛЕННОГО БЛОКА НАВИГАЦИИ --- */
-
+        
         main {
-            max-width: 1100px;
+            max-width: 1400px; /* <-- ИЗМЕНЕНИЕ ШИРИНЫ */
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -310,15 +313,14 @@
                 overflow-x: auto;
                 justify-content: flex-start;
             }
-            .nav-items {
-                gap: 0;
-            }
-            nav a {
+            .nav-links a {
                 padding: 0.5rem 0.75rem;
             }
             .lang-switcher {
-                padding-left: 0.75rem;
-                margin-left: 0.5rem;
+                position: static;
+                transform: none;
+                margin-left: auto;
+                padding-left: 0.5rem;
             }
             main { padding: 0 1rem; }
         }
@@ -336,16 +338,16 @@
             <p data-key="mainSubtitle">Весільний напрямок: Підсумки першого півріччя, антикризовий план та ключові рішення</p>
         </div>
         <nav>
-            <div class="nav-items">
+            <div class="nav-links">
                 <a href="#analysis" data-key="navAnalysis">Аналіз</a>
                 <a href="#problems" data-key="navProblems">Проблеми</a>
                 <a href="#strategy" data-key="navStrategy">Стратегія</a>
                 <a href="#finance" data-key="navFinance">Фінанси</a>
                 <a href="#decision" data-key="navDecision">Рішення</a>
-                <div class="lang-switcher">
-                    <button id="lang-uk" title="Українська">🇺🇦</button>
-                    <button id="lang-en" title="English">🇬🇧</button>
-                </div>
+            </div>
+            <div class="lang-switcher">
+                <button id="lang-uk" title="Українська">🇺🇦</button>
+                <button id="lang-en" title="English">🇬🇧</button>
             </div>
         </nav>
     </header>
