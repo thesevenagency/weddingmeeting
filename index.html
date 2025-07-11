@@ -61,6 +61,7 @@
             margin: 0 auto;
         }
         
+        /* --- ИСПРАВЛЕННЫЙ БЛОК НАВИГАЦИИ --- */
         nav {
             position: sticky;
             top: 0;
@@ -69,18 +70,17 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
-            padding: 0.75rem 2rem;
+            padding: 0.75rem 1rem;
             z-index: 100;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+            text-align: center;
+            overflow-x: auto;
         }
-        .nav-links {
-            display: flex;
+        .nav-items {
+            display: inline-flex;
+            align-items: center;
             gap: 0.5rem;
         }
-        nav a {
+        .nav-items a {
             color: var(--secondary-text-color);
             text-decoration: none;
             padding: 0.5rem 1rem;
@@ -89,16 +89,16 @@
             transition: color 0.2s, background-color 0.2s;
             white-space: nowrap;
         }
-        nav a:hover, nav a.active {
+        .nav-items a:hover, .nav-items a.active {
             color: var(--bg-color);
             background-color: var(--accent-blue);
         }
 
         .lang-switcher {
-            position: absolute;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
+            display: inline-flex;
+            margin-left: 1rem;
+            border-left: 1px solid var(--border-color);
+            padding-left: 1rem;
         }
         .lang-switcher button {
             font-size: 1.2rem;
@@ -116,9 +116,11 @@
             opacity: 1;
             transform: scale(1.1);
         }
-        
+        /* --- КОНЕЦ ИСПРАВЛЕННОГО БЛОКА НАВИГАЦИИ --- */
+
+
         main {
-            max-width: 1100px; /* <-- ВОЗВРАЩАЕМ ШИРИНУ ПО УМОЛЧАНИЮ */
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -329,17 +331,6 @@
             header h1 { font-size: 2.2rem; }
             header p { font-size: 1rem; }
             h2 { font-size: 2rem; }
-            nav {
-                overflow-x: auto;
-                justify-content: flex-start;
-            }
-            .nav-links a {
-                padding: 0.5rem 0.75rem;
-            }
-            .lang-switcher {
-                margin-left: auto;
-                padding-left: 0.5rem;
-            }
             main { padding: 0 1rem; }
         }
     </style>
@@ -356,16 +347,16 @@
             <p data-key="mainSubtitle">Весільний напрямок: Підсумки першого півріччя, антикризовий план та ключові рішення</p>
         </div>
         <nav>
-            <div class="nav-links">
+            <div class="nav-items">
                 <a href="#analysis" data-key="navAnalysis">Аналіз</a>
                 <a href="#problems" data-key="navProblems">Проблеми</a>
                 <a href="#strategy" data-key="navStrategy">Стратегія</a>
                 <a href="#finance" data-key="navFinance">Фінанси</a>
                 <a href="#decision" data-key="navDecision">Рішення</a>
-            </div>
-            <div class="lang-switcher">
-                <button id="lang-uk" title="Українська">🇺🇦</button>
-                <button id="lang-en" title="English">🇬🇧</button>
+                <div class="lang-switcher">
+                    <button id="lang-uk" title="Українська">🇺🇦</button>
+                    <button id="lang-en" title="English">🇬🇧</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -518,11 +509,11 @@
         
         <section id="video-interlude">
             <h2><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span data-key="videoSectionTitle">Один ролик замість тисячі слів</span></h2>
-            <p class="section-summary" data-key="videoIntro">Перш ніж ми перейдемо до фінальних рішень, я хочу показати вам один приклад. Це історія про те, як одна з найбільших компаній у світі зіткнулася з тим, що всі знали правду: їхній продукт був поганим. Замість того, щоб це приховувати, вони зробили свою проблему частиною рішення. Це — про радикальну чесність.</p>
+            <p class="section-summary" data-key="videoIntro">Перш ніж ми перейдемо до фінальних рішень, я хочу показати вам один приклад. Це історія про те, як одна з найбільших компаній у світі зіткнулася з тим, що всі знали правду: їхній продукт став поганим. Замість того, щоб це приховувати, вони зробили свою проблему публічною і перетворили її на початок великих змін. Це — про радикальну чесність.</p>
             <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/AH5R56jILag?si=cs1BWWg0udj27zkv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/O-A09d2sLuE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-             <p class="section-summary" style="margin-top: 2rem;" data-key="videoOutro">Domino's перебудували довіру, тому що не побоялися визнати правду. Я пропоную нам сьогодні зробити те саме. Ми чесно подивилися на наші проблеми. Тепер я представляю план, як ми будемо їх вирішувати, крок за кроком, щоб знову зробити наш бізнес сильним.</p>
+             <p class="section-summary" style="margin-top: 2rem;" data-key="videoOutro">Domino's перебудували довіру, тому що не побоялися визнати правду. Я пропоную нам сьогодні зробити те саме. Ми чесно подивилися на наші проблеми. А тепер так само чесно подивимось на фінанси, щоб зрозуміти, як ми будемо все виправляти.</p>
         </section>
 
         <section id="decision">
