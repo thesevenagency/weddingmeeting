@@ -61,7 +61,6 @@
             margin: 0 auto;
         }
         
-        /* --- ИСПРАВЛЕННЫЙ БЛОК НАВИГАЦИИ --- */
         nav {
             position: sticky;
             top: 0;
@@ -116,9 +115,7 @@
             opacity: 1;
             transform: scale(1.1);
         }
-        /* --- КОНЕЦ ИСПРАВЛЕННОГО БЛОКА НАВИГАЦИИ --- */
-
-
+        
         main {
             max-width: 1100px;
             margin: 0 auto;
@@ -138,7 +135,7 @@
             font-weight: 700;
             text-align: center;
             margin-top: 0;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             letter-spacing: -0.015em;
             display: flex;
             align-items: center;
@@ -179,7 +176,7 @@
             text-decoration: underline;
         }
 
-        h3 { font-size: 1.25rem; font-weight: 700; margin: 0 0 1rem 0; }
+        h3 { font-size: 1.25rem; font-weight: 700; margin: 0 0 0.25rem 0; }
         h4 { font-size: 1.1rem; font-weight: 700; margin: 0 0 0.5rem 0; }
 
         .chart-container {
@@ -222,16 +219,62 @@
             border: 1px solid rgba(215, 56, 69, 0.1);
             padding: 1.5rem;
             border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
         }
         .problem-item p { color: var(--secondary-text-color); margin: 0; }
+        .problem-viz {
+            flex-shrink: 0;
+            width: 80px;
+            height: 10px;
+            background-color: #EAEAEA;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .problem-viz-bar {
+            height: 100%;
+            background-color: var(--chart-red);
+            border-radius: 5px;
+        }
 
-        .strategy-list { display: flex; flex-direction: column; gap: 2.5rem; }
+        .strategy-list { display: flex; flex-direction: column; gap: 1rem; }
         .strategy-item {
-            padding-top: 2.5rem;
             border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
         }
         .strategy-item:first-child { border-top: none; padding-top: 0; }
-        .strategy-item h3 { font-size: 1.5rem; font-weight: 500; }
+        .strategy-item h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+        }
+        .strategy-item h3::after {
+            content: '+';
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--accent-blue);
+            transition: transform 0.3s ease;
+        }
+        .strategy-item.active h3::after {
+            transform: rotate(45deg);
+        }
+        .strategy-item ul {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, margin-top 0.4s ease-out;
+            margin-top: 0;
+        }
+        .strategy-item.active ul {
+            max-height: 500px;
+            margin-top: 1.5rem;
+            transition: max-height 0.5s ease-in, margin-top 0.5s ease-in;
+        }
 
         ul { padding-left: 20px; margin: 0; color: var(--secondary-text-color); }
         li { margin-bottom: 0.75rem; }
@@ -270,7 +313,7 @@
             width: 100%;
             max-width: 800px;
             margin: 2rem auto;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
             border-radius: 12px;
             background-color: #000;
         }
@@ -331,6 +374,19 @@
             header h1 { font-size: 2.2rem; }
             header p { font-size: 1rem; }
             h2 { font-size: 2rem; }
+            nav {
+                overflow-x: auto;
+                justify-content: flex-start;
+            }
+            .nav-items {
+                gap: 0;
+            }
+            .nav-links a {
+                padding: 0.5rem 0.75rem;
+            }
+            .lang-switcher {
+                padding-left: 0.75rem;
+            }
             main { padding: 0 1rem; }
         }
     </style>
@@ -418,16 +474,16 @@
             <h2><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><g><path d="M12,5.99L19.53,19H4.47L12,5.99 M12,2L1,21h22L12,2L12,2z"/><path d="M13,16h-2v2h2V16z"/><path d="M13,10h-2v4h2V10z"/></g></g></svg><span data-key="sec5Title">Ключові проблеми</span></h2>
             <div class="problem-list">
                 <div class="problem-item">
-                    <h3 data-key="problem1Title">Падіння обсягу продажів на 39%</h3>
-                    <p data-key="problem1Text">Пряма втрата майже половини доходу.</p>
+                    <div class="problem-text"><h3 data-key="problem1Title">Падіння обсягу продажів на 39%</h3><p data-key="problem1Text">Пряма втрата майже половини доходу.</p></div>
+                    <div class="problem-viz"><div class="problem-viz-bar" style="width: 39%;"></div></div>
                 </div>
                 <div class="problem-item">
-                    <h3 data-key="problem2Title">Падіння середнього чека на 25%</h3>
-                    <p data-key="problem2Text">Кожна угода приносить на чверть менше, що свідчить про проблеми з цінністю пропозиції.</p>
+                     <div class="problem-text"><h3 data-key="problem2Title">Падіння середнього чека на 25%</h3><p data-key="problem2Text">Кожна угода приносить на чверть менше, що свідчить про проблеми з цінністю пропозиції.</p></div>
+                    <div class="problem-viz"><div class="problem-viz-bar" style="width: 25%;"></div></div>
                 </div>
                  <div class="problem-item">
-                    <h3 data-key="problem3Title">Зменшення кількості заявок на 19%</h3>
-                    <p data-key="problem3Text">Ринок звужується, або маркетингові канали працюють менш ефективно.</p>
+                    <div class="problem-text"><h3 data-key="problem3Title">Зменшення кількості заявок на 19%</h3><p data-key="problem3Text">Ринок звужується, або маркетингові канали працюють менш ефективно.</p></div>
+                    <div class="problem-viz"><div class="problem-viz-bar" style="width: 19%;"></div></div>
                 </div>
                 <div class="problem-item" data-key="lostClientsLink">
                     <p>Детальний аналіз по кожному загубленому клієнту за останні 6 місяців доступний у <a href="https://thesevenagency.github.io/client-report/" target="_blank">цьому звіті</a>.</p>
@@ -511,7 +567,7 @@
             <h2><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg><span data-key="videoSectionTitle">Один ролик замість тисячі слів</span></h2>
             <p class="section-summary" data-key="videoIntro">Перш ніж ми перейдемо до фінальних рішень, я хочу показати вам один приклад. Це історія про те, як одна з найбільших компаній у світі зіткнулася з тим, що всі знали правду: їхній продукт став поганим. Замість того, щоб це приховувати, вони зробили свою проблему публічною і перетворили її на початок великих змін. Це — про радикальну чесність.</p>
             <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/AH5R56jILag?si=56PWnbhq94bgpadV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/AH5R56jILag?si=Bm5M6x8v4T__W5vd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
              <p class="section-summary" style="margin-top: 2rem;" data-key="videoOutro">Domino's перебудували довіру, тому що не побоялися визнати правду. Я пропоную нам сьогодні зробити те саме. Ми чесно подивилися на наші проблеми. А тепер так само чесно подивимось на фінанси, щоб зрозуміти, як ми будемо все виправляти.</p>
         </section>
@@ -745,6 +801,16 @@
 
             langButtons.uk.addEventListener('click', () => switchLanguage('uk'));
             langButtons.en.addEventListener('click', () => switchLanguage('en'));
+
+            // Accordion logic
+            const strategyItems = document.querySelectorAll('.strategy-item');
+            strategyItems.forEach(item => {
+                const header = item.querySelector('h3');
+                header.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+
 
             function renderCharts(lang) {
                 Object.values(chartInstances).forEach(chart => chart.destroy());
